@@ -1,32 +1,38 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace DrivingSchoolApp.Models
 {
     public class Person
     {
-        public int id { get; set; }
+        public int Id { get; set; }
+
+        [Required]
+        public string IdentityUserId { get; set; }
+
+        public IdentityUser IdentityUser { get; set; }
 
         [Required(ErrorMessage ="Введите фамилию")]
         [Display(Name ="Фамилия")]
-        public string surname { get; set; }
+        public string Surname { get; set; }
 
         [Required(ErrorMessage = "Введите имя")]
         [Display(Name = "Имя")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [Display(Name = "Отчество")]
-        public string patronymic { get; set; }
+        public string Patronymic { get; set; }
 
         [Phone(ErrorMessage ="Введите номер корректно")]
         [Display(Name = "Телефон")]
-        public string phone { get; set; }
+        public string Phone { get; set; }
 
         [Display(Name = "Дата рождения")]
-        public DateTime birthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         [Required(ErrorMessage = "Введите паспортные данные")]
         [Display(Name = "Пасспортные данные")]
-        public string passport { get; set; }
+        public string Passport { get; set; }
 
     }
 }
