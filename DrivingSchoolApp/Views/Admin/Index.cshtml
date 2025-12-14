@@ -4,6 +4,15 @@
 
 <h2>Панель администратора</h2>
 
+@if(TempData["GeneratedPassword"] != null)
+{
+	<div style="border:1px solid green; padding:10px; margin-bottom:15px;">
+		<strong>Пользователь создан!</strong><br />
+		Email: @TempData["CreatedUserEmail"]<br />
+		Пароль: @TempData["GeneratedPassword"]
+	</div>
+}
+
 <ul>
 	<li>Управление пользователями</li>
 	<li>Учебные группы</li>

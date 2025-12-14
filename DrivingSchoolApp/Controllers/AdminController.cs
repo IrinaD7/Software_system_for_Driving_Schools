@@ -17,6 +17,11 @@ namespace DrivingSchoolApp.Controllers
             _roleManager = roleManager;
         }
 
+        private string GeneratePassword()
+        {
+            return $"Qw1!{Guid.NewGuid().ToString("N").Substring(0,8)}";
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -42,7 +47,7 @@ namespace DrivingSchoolApp.Controllers
                 Email = model.Email
             };
 
-            string password = "Test123!";
+            string password = GeneratePassword();
 
             var result = await _userManager.CreateAsync(user, password);
 
@@ -63,6 +68,8 @@ namespace DrivingSchoolApp.Controllers
 
             await _userManager.AddToRoleAsync(user, model.Role);
 
+            TempData["GeneratedPassword"] = password;
+            TempData["CreatedUserEmail"] = model.Email;
             return RedirectToAction("Index");
         }
     }
