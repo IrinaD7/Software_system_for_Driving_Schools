@@ -7,7 +7,8 @@ namespace DrivingSchoolApp.Models
         [Display(Name = "Статус обучения")]
         public StudentStatus Status { get; set; } = StudentStatus.Pending;
 
-        public int? Group { get; set; }
+		[Display(Name = "Учебная группа")]
+		public StudyGroup Group { get; set; }
     }
 
     public enum StudentStatus
