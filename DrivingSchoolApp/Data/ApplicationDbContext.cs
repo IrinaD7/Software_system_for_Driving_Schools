@@ -23,7 +23,7 @@ namespace DrivingSchoolApp.Data
 		public DbSet<PracticeExam> PracticeExams { get; set; }
 		public DbSet<Application> Applications { get; set; }
 		public DbSet<Vehicle> Vehicles { get; set; }
-
+		public DbSet<UserProfile> UserProfiles { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
