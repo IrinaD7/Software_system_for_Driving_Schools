@@ -4,9 +4,11 @@ namespace DrivingSchoolApp.Models
 {
 	public class Application
 	{
+		public int Id { get; set; }
+
 		[Required]
 		[Display(Name = "Статус")]
-		public Application Status { get; set; }
+		public ApplicationStatus Status { get; set; }
 
 		[Required]
 		[Display(Name = "Студент")]
