@@ -8,7 +8,7 @@ namespace DrivingSchoolApp.Models
 
 		[Required(ErrorMessage = "Укажите ученика")]
 		[Display(Name = "Ученик")]
-		public int StusentId { get; set; }	
+		public int StudentId { get; set; }	
 
 		public Student Student { get; set; }
 
@@ -23,6 +23,7 @@ namespace DrivingSchoolApp.Models
 		[Required(ErrorMessage = "Укажите транспортное средство")]
 		[Display(Name = "Транспортное средство")]
 		public Vehicle Vehicle { get; set; }
+		public int VehicleId { get; set; }
 
 		[Required(ErrorMessage = "Укажите дату и время")]
 		[Display(Name = "Дата и время")]
