@@ -7,11 +7,6 @@ namespace DrivingSchoolApp.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        public string IdentityUserId { get; set; }
-
-        public IdentityUser IdentityUser { get; set; }
-
         [Required(ErrorMessage ="Введите фамилию")]
         [Display(Name ="Фамилия")]
         public string Surname { get; set; }

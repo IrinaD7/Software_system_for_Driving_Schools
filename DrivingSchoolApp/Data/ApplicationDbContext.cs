@@ -1,6 +1,7 @@
 ﻿using DrivingSchoolApp.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace DrivingSchoolApp.Data
 {
@@ -45,6 +46,12 @@ namespace DrivingSchoolApp.Data
 			modelBuilder.Entity<StudyProgram>()
 				.Property(s => s.Cost)
 				.HasPrecision(18, 2);
+
+			modelBuilder.Entity<Student>()
+				.HasOne(s => s.Group)
+				.WithMany(g => g.Students)
+				.HasForeignKey(s => s.GroupId)
+				.OnDelete(DeleteBehavior.Restrict);
 		}
 	}
 }

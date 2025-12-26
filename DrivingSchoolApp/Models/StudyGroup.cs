@@ -19,5 +19,7 @@ namespace DrivingSchoolApp.Models
 
 		[Display(Name = "Дата окончания обучения")]
 		public DateTime EndDate { get; set; }
+
+		public ICollection<Student> Students { get; set; }
 	}
 }
