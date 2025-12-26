@@ -16,8 +16,7 @@ namespace DrivingSchoolApp.Models
 
 		public Student Student { get; set; }
 
-
-
-		
+		[Display(Name = "Результат")]
+		public ExamResult Result {  get; set; }		
 	}
 }
