@@ -1,0 +1,19 @@
+﻿@model DrivingSchoolApp.Models.Student
+
+<form asp-action="Create">
+    <div>
+        <label>Фамилия</label>
+        <input asp-for="Surname" />
+        <span asp-validation-for="Surname"></span>
+    </div>
+    <div>
+        <label>Имя</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label>Группа</label>
+        <select asp-for="Group.Id" asp-items="@(new SelectList(ViewBag.Groups, "Id", "Name"))"></select>
+    </div>
+    <button type="submit">Сохранить</button>
+</form>
