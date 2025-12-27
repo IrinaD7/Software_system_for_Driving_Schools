@@ -1,0 +1,22 @@
+﻿@model DrivingSchoolApp.Models.Teacher
+
+<h2>Удалить преподавателя</h2>
+
+<div class="alert alert-danger">
+    Вы уверены, что хотите удалить этого преподавателя?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">ФИО</dt>
+    <dd class="col-sm-9">@Model.Surname @Model.Name @Model.Patronymic</dd>
+
+    <dt class="col-sm-3">Специализация</dt>
+    <dd class="col-sm-9">@Model.Specialization</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+</form>
