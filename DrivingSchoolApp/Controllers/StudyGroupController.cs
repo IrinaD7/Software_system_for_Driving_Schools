@@ -1,6 +1,7 @@
 ﻿using DrivingSchoolApp.Data;
 using DrivingSchoolApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DrivingSchoolApp.Controllers
 {
@@ -19,7 +20,11 @@ namespace DrivingSchoolApp.Controllers
             return View(groups);
         }
 
-        public IActionResult Create() => View();
+        public IActionResult Create()
+        {
+            ViewBag.StudyPrograms = _context.StudyPrograms.ToList();
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -27,30 +32,43 @@ namespace DrivingSchoolApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(group);
+                _context.StudyGroups.Add(group);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.StudyPrograms = _context.StudyPrograms.ToList();
             return View(group);
         }
 
-        public IActionResult Edit(int id)
+
+        public IActionResult Edit(int? id)
         {
-            var group = _context.StudyGroups.Find(id);
+            if (id == null) return NotFound();
+
+            var group = _context.StudyGroups
+                                .Include(g => g.StudyProgram)
+                                .FirstOrDefault(g => g.Id == id);
             if (group == null) return NotFound();
+
+            ViewBag.StudyPrograms = _context.StudyPrograms.ToList();
+
             return View(group);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(StudyGroup group)
+        public IActionResult Edit(int id, StudyGroup group)
         {
+            if (id != group.Id) return NotFound();
+
             if (ModelState.IsValid)
             {
                 _context.Update(group);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.StudyPrograms = _context.StudyPrograms.ToList();
             return View(group);
         }
 

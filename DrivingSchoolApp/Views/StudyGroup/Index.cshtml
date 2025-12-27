@@ -3,13 +3,14 @@
 <h2>Учебные группы</h2>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Создать</a>
+    <a asp-action="Create" class="btn btn-primary">Добавить группу</a>
 </p>
 
-<table class="table">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>Название</th>
+            <th>Программа</th>
             <th>Начало</th>
             <th>Окончание</th>
             <th></th>
@@ -20,11 +21,12 @@
         {
             <tr>
                 <td>@item.Name</td>
+                <td>@item.StudyProgram</td>
                 <td>@item.StartDate.ToShortDateString()</td>
                 <td>@item.EndDate.ToShortDateString()</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
