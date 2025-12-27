@@ -36,7 +36,7 @@ namespace DrivingSchoolApp.Controllers
 
         // POST: Lessons/Create
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Lesson lesson)
         {
             if (!ModelState.IsValid)

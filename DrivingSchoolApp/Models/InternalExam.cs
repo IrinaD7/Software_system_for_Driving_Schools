@@ -2,7 +2,7 @@
 
 namespace DrivingSchoolApp.Models
 {
-	public abstract class InternalExam
+	public class InternalExam
 	{
 		public int Id { get; set; }
 
