@@ -21,7 +21,7 @@
         {
             <tr>
                 <td>@item.Name</td>
-                <td>@item.StudyProgram</td>
+                <td>@item.StudyProgram?.Category</td>
                 <td>@item.StartDate.ToShortDateString()</td>
                 <td>@item.EndDate.ToShortDateString()</td>
                 <td>

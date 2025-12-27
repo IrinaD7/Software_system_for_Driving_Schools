@@ -1,6 +1,7 @@
 ﻿using DrivingSchoolApp.Data;
 using DrivingSchoolApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DrivingSchoolApp.Controllers
@@ -16,7 +17,9 @@ namespace DrivingSchoolApp.Controllers
 
         public IActionResult Index()
         {
-            var groups = _context.StudyGroups.ToList();
+            //var groups = _context.StudyGroups.ToList();
+            //return View(groups);
+            var groups = _context.StudyGroups.Include(g => g.StudyProgram).ToList();
             return View(groups);
         }
 
@@ -36,8 +39,19 @@ namespace DrivingSchoolApp.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.StudyPrograms = _context.StudyPrograms.ToList();
+            var programs = _context.StudyPrograms.ToList();
+            ViewBag.StudyPrograms = new SelectList(programs, "Id", "Category");
+
             return View(group);
+
+            //if (ModelState.IsValid)
+            //{
+            //    _context.StudyGroups.Add(group);
+            //    _context.SaveChanges();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //ViewBag.StudyPrograms = _context.StudyPrograms.ToList();
+            //return View(group);
         }
 
 

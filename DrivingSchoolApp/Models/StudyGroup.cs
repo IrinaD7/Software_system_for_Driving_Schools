@@ -8,11 +8,12 @@ namespace DrivingSchoolApp.Models
 
 		[Required(ErrorMessage = "Введите название группы")]
 		[Display(Name = "Название группы")]
-		public string Name { get; set; }
+		public string Name { get; set; } = string.Empty;
 
-		[Required(ErrorMessage = "Укажите учебную программу")]
+        [Required(ErrorMessage = "Укажите учебную программу")]
 		[Display(Name = "Учебная программа")]
-		public StudyProgram StudyProgram { get; set; }
+        public int StudyProgramId { get; set; }
+        public StudyProgram? StudyProgram { get; set; }
 
 		[Display(Name = "Дата начала обучения")]
 		public DateTime StartDate { get; set; }
@@ -20,6 +21,6 @@ namespace DrivingSchoolApp.Models
 		[Display(Name = "Дата окончания обучения")]
 		public DateTime EndDate { get; set; }
 
-		public ICollection<Student> Students { get; set; }
-	}
+		public ICollection<Student> Students { get; set; } = new List<Student>();
+    }
 }
