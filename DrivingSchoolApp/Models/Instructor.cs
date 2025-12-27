@@ -8,6 +8,7 @@ namespace DrivingSchoolApp.Models
 		public List<Category> Categories { get; set; } = new List<Category>();
 
 		[Display(Name = "Закреплённый автомобиль")]
-		public int? AssignedVehicle { get; set; }
+		public int? AssignedVehicleId { get; set; }
+		public Vehicle? AssignedVehicle { get; set; }
 	}
 }

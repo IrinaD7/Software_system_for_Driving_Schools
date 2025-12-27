@@ -31,5 +31,7 @@ namespace DrivingSchoolApp.Models
 
 		[Display(Name = "Техническое состояние")]
 		public TechnicalCondition TechnicalCondition { get; set; }
+
+		public ICollection<Instructor> Instructors { get; set; }
 	}
 }
