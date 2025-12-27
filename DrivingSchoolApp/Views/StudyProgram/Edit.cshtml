@@ -1,0 +1,39 @@
+﻿@model DrivingSchoolApp.Models.StudyProgram
+
+<h2>Редактировать учебную программу</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Category"></label>
+        <select asp-for="Category" class="form-control" asp-items="@(new SelectList(ViewBag.Categories, Model.Category))"></select>
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TheoryHours"></label>
+        <input asp-for="TheoryHours" class="form-control" />
+        <span asp-validation-for="TheoryHours" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PracticeHours"></label>
+        <input asp-for="PracticeHours" class="form-control" />
+        <span asp-validation-for="PracticeHours" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cost"></label>
+        <input asp-for="Cost" class="form-control" />
+        <span asp-validation-for="Cost" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

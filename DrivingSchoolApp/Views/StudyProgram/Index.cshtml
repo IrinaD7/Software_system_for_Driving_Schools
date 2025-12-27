@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DrivingSchoolApp.Models.StudyProgram>
+
+<h2>Учебные программы</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Создать новую</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Категория</th>
+            <th>Теория (часы)</th>
+            <th>Практика (часы)</th>
+            <th>Стоимость</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Category</td>
+                <td>@item.TheoryHours</td>
+                <td>@item.PracticeHours</td>
+                <td>@item.Cost</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
