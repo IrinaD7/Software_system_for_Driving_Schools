@@ -8,16 +8,16 @@ namespace DrivingSchoolApp.Models
 
 		[Required(ErrorMessage = "Введите модель")]
 		[Display(Name = "Модель")]
-		public string Model { get; set; }
+		public string Model { get; set; } = string.Empty;
 
-		[Required(ErrorMessage = "Введите VIN")]
+        [Required(ErrorMessage = "Введите VIN")]
 		[Display(Name = "VIN")]
-		public string VIN { get; set; }
+		public string VIN { get; set; } = string.Empty;
 
-		[Display(Name = "Цвет")]
-		public string Color { get; set; }
+        [Display(Name = "Цвет")]
+		public string Color { get; set; } = string.Empty;
 
-		[Display(Name = "Трансмиссия")]
+        [Display(Name = "Трансмиссия")]
 		public Transmission Transmission { get; set; }
 
 		[Display(Name = "Тип привода")]
@@ -32,6 +32,6 @@ namespace DrivingSchoolApp.Models
 		[Display(Name = "Техническое состояние")]
 		public TechnicalCondition TechnicalCondition { get; set; }
 
-		public ICollection<Instructor> Instructors { get; set; }
-	}
+		public ICollection<Instructor> Instructors { get; set; } = new List<Instructor>();
+    }
 }

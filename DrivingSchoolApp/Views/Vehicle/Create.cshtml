@@ -1,36 +1,56 @@
-﻿@model IEnumerable<DrivingSchoolApp.Models.Vehicle>
+﻿@model DrivingSchoolApp.Models.Vehicle
 
-<h2>Учебный транспорт</h2>
+<h2>Добавить транспорт</h2>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Добавить транспорт</a>
-</p>
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Model"></label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Модель</th>
-            <th>VIN</th>
-            <th>Категория</th>
-            <th>Год</th>
-            <th>Состояние</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Model</td>
-                <td>@item.VIN</td>
-                <td>@item.Category</td>
-                <td>@item.ManufactureYear</td>
-                <td>@item.TechnicalCondition</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="form-group">
+        <label asp-for="VIN"></label>
+        <input asp-for="VIN" class="form-control" />
+        <span asp-validation-for="VIN" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Color"></label>
+        <input asp-for="Color" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Transmission"></label>
+        <select asp-for="Transmission" class="form-control" asp-items="Html.GetEnumSelectList<DrivingSchoolApp.Models.Transmission>()"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DriveType"></label>
+        <select asp-for="DriveType" class="form-control" asp-items="Html.GetEnumSelectList<DrivingSchoolApp.Models.DriveType>()"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category"></label>
+        <select asp-for="Category" class="form-control" asp-items="Html.GetEnumSelectList<DrivingSchoolApp.Models.Category>()"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ManufactureYear"></label>
+        <input asp-for="ManufactureYear" class="form-control" />
+        <span asp-validation-for="ManufactureYear" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TechnicalCondition"></label>
+        <select asp-for="TechnicalCondition" class="form-control" asp-items="Html.GetEnumSelectList<DrivingSchoolApp.Models.TechnicalCondition>()"></select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

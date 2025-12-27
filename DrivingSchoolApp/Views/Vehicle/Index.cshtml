@@ -11,6 +11,9 @@
         <tr>
             <th>Модель</th>
             <th>VIN</th>
+            <th>Цвет</th>
+            <th>Трансмиссия</th>
+            <th>Привод</th>
             <th>Категория</th>
             <th>Год</th>
             <th>Состояние</th>
@@ -18,19 +21,25 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null)
         {
-            <tr>
-                <td>@item.Model</td>
-                <td>@item.VIN</td>
-                <td>@item.Category</td>
-                <td>@item.ManufactureYear</td>
-                <td>@item.TechnicalCondition</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                </td>
-            </tr>
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Model</td>
+                    <td>@item.VIN</td>
+                    <td>@item.Color</td>
+                    <td>@item.Transmission</td>
+                    <td>@item.DriveType</td>
+                    <td>@item.Category</td>
+                    <td>@item.ManufactureYear</td>
+                    <td>@item.TechnicalCondition</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>

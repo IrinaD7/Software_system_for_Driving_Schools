@@ -1,7 +1,7 @@
-﻿using DrivingSchoolApp.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using DrivingSchoolApp.Models;
-using Microsoft.AspNetCore.Mvc;
-
+using DrivingSchoolApp.Data;
 
 namespace DrivingSchoolApp.Controllers
 {
@@ -14,59 +14,98 @@ namespace DrivingSchoolApp.Controllers
             _context = context;
         }
 
-        public IActionResult Index() => View(_context.Vehicles.ToList());
+        // GET: Vehicle
+        public async Task<IActionResult> Index()
+        {
+            var vehicles = await _context.Vehicles.ToListAsync();
+            return View(vehicles);
+        }
 
-        public IActionResult Create() => View();
+        // GET: Vehicle/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
 
+        // POST: Vehicle/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Vehicle vehicle)
+        public async Task<IActionResult> Create(Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(vehicle);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(vehicle);
+
         }
 
-        public IActionResult Edit(int id)
+        // GET: Vehicle/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            var vehicle = _context.Vehicles.Find(id);
+            if (id == null) return NotFound();
+
+            var vehicle = await _context.Vehicles.FindAsync(id);
             if (vehicle == null) return NotFound();
+
             return View(vehicle);
         }
 
+        // POST: Vehicle/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, Vehicle vehicle)
         {
+            if (id != vehicle.Id) return NotFound();
+
             if (ModelState.IsValid)
             {
-                _context.Update(vehicle);
-                _context.SaveChanges();
+                try
+                {
+                    _context.Update(vehicle);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_context.Vehicles.Any(e => e.Id == vehicle.Id))
+                        return NotFound();
+                    else
+                        throw;
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(vehicle);
         }
 
-        public IActionResult Delete(int id)
+        // GET: Vehicle/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            var vehicle = _context.Vehicles.Find(id);
+            if (id == null) return NotFound();
+
+            var vehicle = await _context.Vehicles
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicle == null) return NotFound();
+
             return View(vehicle);
         }
 
+        // POST: Vehicle/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vehicle = _context.Vehicles.Find(id);
+            var vehicle = await _context.Vehicles.FindAsync(id);
+
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
+
             _context.Vehicles.Remove(vehicle);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
     }
 }
