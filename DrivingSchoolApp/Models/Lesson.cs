@@ -6,19 +6,26 @@ namespace DrivingSchoolApp.Models
 	{
 		public int Id { get; set; }
 
-		[Display(Name = "Преподаватель")]
-		public int TeacherId { get; set; }
+        [Required(ErrorMessage = "Выберите преподавателя")]
+        [Display(Name = "Преподаватель")]
+        public int TeacherId { get; set; }
 
-		public Teacher Teacher{ get; set; }
+        public Teacher? Teacher { get; set; }
 
+        [Required(ErrorMessage = "Введите аудиторию")]
+        [StringLength(50, ErrorMessage = "Название аудитории не должно превышать 50 символов")]
+        [Display(Name = "Аудитория")]
+        public string Classroom { get; set; } = string.Empty;
 
-		[Display(Name = "Аудитория")]
-		public string Classroom{ get; set; }
+        [Required(ErrorMessage = "Укажите дату и время")]
+        [Display(Name = "Дата и время")]
+        [DataType(DataType.DateTime)]
+        public DateTime Date { get; set; }
 
-		[Display(Name = "Дата и время")]
-		public DateTime Date { get; set; }
+        [Required(ErrorMessage = "Выберите учебную группу")]
+        [Display(Name = "Учебная группа")]
+        public int GroupId { get; set; }
 
-		[Display(Name = "Учебная группа")]
-		public StudyGroup Group { get; set; }
-	}
+        public StudyGroup? Group { get; set; }
+    }
 }

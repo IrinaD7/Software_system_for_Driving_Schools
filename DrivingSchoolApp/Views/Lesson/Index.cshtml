@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DrivingSchoolApp.Models.Lesson>
+
+<h2>Теоретические занятия</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Добавить занятие</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Преподаватель</th>
+            <th>Группа</th>
+            <th>Аудитория</th>
+            <th>Дата и время</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Teacher?.Surname</td>
+                <td>@item.Group?.Name</td>
+                <td>@item.Classroom</td>
+                <td>@item.Date</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
