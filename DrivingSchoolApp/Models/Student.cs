@@ -8,9 +8,18 @@ namespace DrivingSchoolApp.Models
         public StudentStatus Status { get; set; } = StudentStatus.Pending;
 
 		[Display(Name = "Учебная группа")]
-        public int GroupId {  get; set; }
-		public StudyGroup Group { get; set; }
-        
+        public int? GroupId {  get; set; }
+		public StudyGroup? Group { get; set; }
+
+        public Student()
+        {
+            Surname = string.Empty;
+            Name = string.Empty;
+            Patronymic = string.Empty;
+            Phone = string.Empty;
+            Passport = string.Empty;
+        }
+
     }
 
     public enum StudentStatus

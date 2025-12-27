@@ -3,15 +3,32 @@
 <h2>Удалить студента</h2>
 
 <h3>Вы уверены, что хотите удалить этого студента?</h3>
+<hr />
 
 <div>
-    <p><strong>Фамилия:</strong> @Model.Surname</p>
-    <p><strong>Имя:</strong> @Model.Name</p>
-    <p><strong>Группа:</strong> @Model.Group?.Name</p>
-</div>
+    <dl class="row">
+        <dt class="col-sm-2">Фамилия:</dt>
+        <dd class="col-sm-10">@Model.Surname</dd>
 
-<form asp-action="DeleteConfirmed" method="post">
-    <input type="hidden" asp-for="Id" />
-    <button type="submit" class="btn btn-danger">Удалить</button>
-    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
-</form>
+        <dt class="col-sm-2">Имя:</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+
+        <dt class="col-sm-2">Группа:</dt>
+        <dd class="col-sm-10">
+            @if (Model.Group != null)
+            {
+                @Model.Group.Name
+            }
+            else
+            {
+                <span class="text-muted">Не назначена</span>
+            }
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>

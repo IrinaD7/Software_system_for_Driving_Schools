@@ -2,29 +2,47 @@
 
 <h2>Список студентов</h2>
 
-<a asp-action="Create">Добавить студента</a>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Добавить студента</a>
+</p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Группа</th>
-            <th>Действия</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var student in Model)
-        {
+@if (!Model.Any())
+{
+    <p>Нет студентов.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>@student.Surname</td>
-                <td>@student.Name</td>
-                <td>@student.Group?.Name</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@student.Id">Редактировать</a> |
-                    <a asp-action="Delete" asp-route-id="@student.Id">Удалить</a>
-                </td>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Группа</th>
+                <th>Действия</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Surname</td>
+                    <td>@student.Name</td>
+                    <td>
+                        @if (student.Group != null)
+                        {
+                            @student.Group.Name
+                        }
+                        else
+                        {
+                            <span class="text-muted">Не назначена</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-sm btn-warning">Редактировать</a>
+                        <a asp-action="Delete" asp-route-id="@student.Id" class="btn btn-sm btn-danger">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

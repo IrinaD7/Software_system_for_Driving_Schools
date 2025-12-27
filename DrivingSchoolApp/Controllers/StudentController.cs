@@ -69,19 +69,26 @@ namespace DrivingSchoolApp.Controllers
 		// GET: Student/Delete/5
 		public IActionResult Delete(int id)
 		{
-			var student = _context.Students.Find(id);
-			if (student == null) return NotFound();
-			return View(student);
-		}
+            var student = _context.Students.Include(s => s.Group).FirstOrDefault(s => s.Id == id);
+
+            if (student == null) return NotFound();
+            return View(student);
+        }
 
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public IActionResult DeleteConfirmed(int id)
 		{
-			var student = _context.Students.Find(id);
-			_context.Students.Remove(student);
-			_context.SaveChanges();
-			return RedirectToAction(nameof(Index));
-		}
+            var student = _context.Students.Find(id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            _context.Students.Remove(student);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
 	}
 }

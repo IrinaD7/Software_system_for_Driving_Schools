@@ -1,54 +1,66 @@
 ﻿@model DrivingSchoolApp.Models.Student
-@using Microsoft.AspNetCore.Mvc.Rendering
-
-<h2>Редактировать студента</h2>
 
 <form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+
     <input type="hidden" asp-for="Id" />
 
     <div class="form-group">
-        <label asp-for="Surname"></label>
-        <input class="form-control" asp-for="Surname" />
+        <label asp-for="Surname" class="control-label"></label>
+        <input asp-for="Surname" class="form-control" />
         <span asp-validation-for="Surname" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Name"></label>
-        <input class="form-control" asp-for="Name" />
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Patronymic"></label>
-        <input class="form-control" asp-for="Patronymic" />
+        <label asp-for="Patronymic" class="control-label"></label>
+        <input asp-for="Patronymic" class="form-control" />
         <span asp-validation-for="Patronymic" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Phone"></label>
-        <input class="form-control" asp-for="Phone" />
+        <label asp-for="Phone" class="control-label"></label>
+        <input asp-for="Phone" class="form-control" />
         <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="BirthDate"></label>
-        <input class="form-control" type="date" asp-for="BirthDate" />
+        <label asp-for="BirthDate" class="control-label"></label>
+        <input asp-for="BirthDate" type="date" class="form-control" />
         <span asp-validation-for="BirthDate" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Passport"></label>
-        <input class="form-control" asp-for="Passport" />
+        <label asp-for="Passport" class="control-label"></label>
+        <input asp-for="Passport" class="form-control" />
         <span asp-validation-for="Passport" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label>Группа</label>
-        <select class="form-control" asp-for="Group.Id" asp-items="@(new SelectList(ViewBag.Groups, "Id", "Name"))">
+        <label asp-for="GroupId" class="control-label"></label>
+        <select asp-for="GroupId" class="form-control">
             <option value="">-- Выберите группу --</option>
+            @foreach (var group in ViewBag.Groups)
+            {
+                <option value="@group.Id">@group.Name</option>
+            }
         </select>
+        <span asp-validation-for="GroupId" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Сохранить</button>
-    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+    </div>
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -9,25 +9,25 @@ namespace DrivingSchoolApp.Models
 
         [Required(ErrorMessage ="Введите фамилию")]
         [Display(Name ="Фамилия")]
-        public string Surname { get; set; }
+        public string Surname { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Введите имя")]
         [Display(Name = "Имя")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [Display(Name = "Отчество")]
-        public string Patronymic { get; set; }
+        public string Patronymic { get; set; } = string.Empty;
 
         [Phone(ErrorMessage ="Введите номер корректно")]
         [Display(Name = "Телефон")]
-        public string Phone { get; set; }
+        public string Phone { get; set; } = string.Empty;
 
         [Display(Name = "Дата рождения")]
         public DateTime BirthDate { get; set; }
 
         [Required(ErrorMessage = "Введите паспортные данные")]
         [Display(Name = "Пасспортные данные")]
-        public string Passport { get; set; }
+        public string Passport { get; set; } = string.Empty;
 
     }
 }
