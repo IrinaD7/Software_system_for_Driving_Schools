@@ -34,7 +34,7 @@ namespace DrivingSchoolApp.Models
 		public int? Grade { get; set; }
 
 		[Display(Name = "Комментарий")]
-		public string Comment { get; set; }
+		public string? Comment { get; set; }
 
 
 	}

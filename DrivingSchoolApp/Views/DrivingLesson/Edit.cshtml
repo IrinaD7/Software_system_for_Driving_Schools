@@ -1,0 +1,51 @@
+﻿@model DrivingSchoolApp.Models.DrivingLesson
+
+<h2>Редактировать занятие</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label>Ученик</label>
+        <select asp-for="StudentId" class="form-control">
+            @foreach (var s in ViewBag.Students)
+            {
+                <option value="@s.Id">@s.Surname</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Инструктор</label>
+        <select asp-for="InstructorId" class="form-control">
+            @foreach (var i in ViewBag.Instructors)
+            {
+                <option value="@i.Id">@i.Surname</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Автомобиль</label>
+        <select asp-for="VehicleId" class="form-control">
+            @foreach (var v in ViewBag.Vehicles)
+            {
+                <option value="@v.Id">@v.Model</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input asp-for="Date" type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input asp-for="Grade" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <textarea asp-for="Comment" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>
