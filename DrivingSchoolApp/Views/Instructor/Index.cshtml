@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DrivingSchoolApp.Models.Instructor>
+
+<h2>Инструкторы</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Добавить инструктора</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ФИО</th>
+            <th>Категории</th>
+            <th>Автомобиль</th>
+            <th>Опыт</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Surname @item.Name @item.Patronymic</td>
+                <td>@string.Join(", ", item.Categories)</td>
+                <td>@item.AssignedVehicle?.Model</td>
+                <td>@item.Experience лет</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

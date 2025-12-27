@@ -1,0 +1,87 @@
+﻿@model DrivingSchoolApp.Models.Instructor
+
+<h2>Добавить инструктора</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <h4>Личные данные</h4>
+
+    <div class="form-group">
+        <label asp-for="Surname"></label>
+        <input asp-for="Surname" class="form-control" />
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Patronymic"></label>
+        <input asp-for="Patronymic" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BirthDate"></label>
+        <input asp-for="BirthDate" type="date" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Passport"></label>
+        <input asp-for="Passport" class="form-control" />
+    </div>
+
+    <h4>Данные сотрудника</h4>
+
+    <div class="form-group">
+        <label asp-for="DriverLicense"></label>
+        <input asp-for="DriverLicense" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Experience"></label>
+        <input asp-for="Experience" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Qualification"></label>
+        <input asp-for="Qualification" class="form-control" />
+    </div>
+
+    <h4>Информация инструктора</h4>
+
+    <div class="form-group">
+        <label asp-for="Categories"></label>
+        <select asp-for="Categories"
+                asp-items="Html.GetEnumSelectList<Category>()"
+                class="form-control"
+                multiple>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AssignedVehicleId"></label>
+        <select asp-for="AssignedVehicleId"
+                class="form-control"
+                asp-items="ViewBag.Vehicles">
+            <option value="">-- не назначен --</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
