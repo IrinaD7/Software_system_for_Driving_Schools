@@ -1,0 +1,72 @@
+﻿@model DrivingSchoolApp.Models.Vehicle
+
+<h2>Редактировать транспорт</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Model"></label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VIN"></label>
+        <input asp-for="VIN" class="form-control" />
+        <span asp-validation-for="VIN" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Color"></label>
+        <input asp-for="Color" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Transmission"></label>
+        <select asp-for="Transmission"
+                asp-items="Html.GetEnumSelectList<Transmission>()"
+                class="form-control">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DriveType"></label>
+        <select asp-for="DriveType"
+                asp-items="Html.GetEnumSelectList<DriveType>()"
+                class="form-control">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category"></label>
+        <select asp-for="Category"
+                asp-items="Html.GetEnumSelectList<Category>()"
+                class="form-control">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ManufactureYear"></label>
+        <input asp-for="ManufactureYear" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TechnicalCondition"></label>
+        <select asp-for="TechnicalCondition"
+                asp-items="Html.GetEnumSelectList<TechnicalCondition>()"
+                class="form-control">
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

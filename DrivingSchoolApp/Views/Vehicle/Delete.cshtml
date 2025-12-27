@@ -1,0 +1,22 @@
+﻿@model DrivingSchoolApp.Models.Vehicle
+
+<h2>Удалить транспорт</h2>
+
+<div class="alert alert-danger">
+    Вы уверены, что хотите удалить этот транспорт?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Модель</dt>
+    <dd class="col-sm-9">@Model.Model</dd>
+
+    <dt class="col-sm-3">VIN</dt>
+    <dd class="col-sm-9">@Model.VIN</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+</form>
