@@ -29,32 +29,7 @@ public class ApplicationController : Controller
         return View();
     }
 
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public IActionResult Create(Application application)
-    //{
-    //    if (!ModelState.IsValid)
-    //    {
-    //        ViewBag.Programs = _context.StudyPrograms.ToList();
-    //        return View(application);
-    //    }
-
-    //    application.Date = DateTime.Now;
-
-    //    bool exists = _context.Students.Any(s =>
-    //        s.Passport == application.Passport &&
-    //        s.BirthDate == application.BirthDate);
-
-    //    application.Status = exists
-    //        ? ApplicationStatus.Rejected
-    //        : ApplicationStatus.WaitingPayment;
-
-    //    _context.Applications.Add(application);
-    //    _context.SaveChanges();
-
-    //    return RedirectToAction(nameof(Index));
-    //}
-
+ 
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Create(Application application)
@@ -65,8 +40,6 @@ public class ApplicationController : Controller
             return View(application);
         }
 
-        application.Date = DateTime.Now;
-
         bool studentExists = _context.Students.Any(s =>
             s.Passport == application.Passport &&
             s.BirthDate.Date == application.BirthDate.Date); 
@@ -74,15 +47,28 @@ public class ApplicationController : Controller
      
         if (studentExists)
         {
-            application.Status = ApplicationStatus.Rejected;
-            TempData["Message"] = "Студент с такими паспортными данными уже существует. Заявка отклонена.";
-        }
-        else
-        {
-            application.Status = ApplicationStatus.WaitingPayment;
+            ModelState.AddModelError("Passport", "Студент с такими паспортными данными уже существует. Нельзя создать заявку.");
+
+            ViewBag.Programs = _context.StudyPrograms.ToList();
+            return View(application);
         }
 
-        _context.Applications.Add(application);
+        bool applicationExists = _context.Applications.Any(a => 
+        a.Passport == application.Passport &&
+        a.BirthDate.Date == application.BirthDate.Date && 
+        a.Status != ApplicationStatus.Rejected);
+
+        if (applicationExists)
+        {
+            ModelState.AddModelError("Passport", "Заявка на этого ученика уже существует");
+			ViewBag.Programs = _context.StudyPrograms.ToList();
+			return View(application);
+		}
+
+		application.Date = DateTime.Now;
+        application.Status = ApplicationStatus.WaitingPayment;
+        application.PaymentDeadline = DateTime.Now.AddDays(7);
+		_context.Applications.Add(application);
         _context.SaveChanges();
 
         return RedirectToAction(nameof(Index));
