@@ -27,6 +27,12 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    <a asp-controller="Attendance"
+                       asp-action="Mark"
+                       asp-route-lessonId="@item.Id"
+                       class="btn btn-sm btn-warning">
+                        Посещаемость
+                    </a>
                 </td>
             </tr>
         }

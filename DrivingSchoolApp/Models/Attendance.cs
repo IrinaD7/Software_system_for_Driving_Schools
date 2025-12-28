@@ -6,13 +6,11 @@ namespace DrivingSchoolApp.Models
 	{
 		public int Id { get; set; }
 
-		[Required]
 		[Display(Name = "Студент")]
 		public int StudentId { get; set; }
 
 		public Student Student { get; set; }
 
-		[Required]
 		[Display(Name = "Занятие")]
 		public int LessonId { get; set; }
 
