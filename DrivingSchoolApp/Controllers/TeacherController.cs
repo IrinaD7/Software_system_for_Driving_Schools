@@ -1,9 +1,11 @@
 ﻿using DrivingSchoolApp.Data;
 using DrivingSchoolApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DrivingSchoolApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TeacherController : Controller
     {
         private readonly ApplicationDbContext _context;

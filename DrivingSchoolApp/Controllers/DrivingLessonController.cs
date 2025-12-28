@@ -1,10 +1,12 @@
 ﻿using DrivingSchoolApp.Data;
 using DrivingSchoolApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DrivingSchoolApp.Controllers
 {
+    [Authorize(Roles = "Instructor")]
     public class DrivingLessonController : Controller
     {
         private readonly ApplicationDbContext _context;

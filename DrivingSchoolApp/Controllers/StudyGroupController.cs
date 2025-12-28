@@ -1,11 +1,13 @@
 ﻿using DrivingSchoolApp.Data;
 using DrivingSchoolApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DrivingSchoolApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StudyGroupController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -17,8 +19,6 @@ namespace DrivingSchoolApp.Controllers
 
         public IActionResult Index()
         {
-            //var groups = _context.StudyGroups.ToList();
-            //return View(groups);
             var groups = _context.StudyGroups.Include(g => g.StudyProgram).ToList();
             return View(groups);
         }

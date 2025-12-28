@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using DrivingSchoolApp.Models.Admin;
 using Microsoft.AspNetCore.Identity;
+using DrivingSchoolApp.Models;
+using DrivingSchoolApp.Data;
 
 namespace DrivingSchoolApp.Controllers
 {
@@ -10,11 +12,13 @@ namespace DrivingSchoolApp.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext _context;
 
-        public AdminController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public AdminController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _context = context;
         }
 
         private string GeneratePassword()
@@ -30,6 +34,7 @@ namespace DrivingSchoolApp.Controllers
         [HttpGet]
         public IActionResult CreateUser()
         {
+            ViewBag.Persons = _context.Persons.Where(p => !_context.UserProfiles.Any(up => up.PersonId == p.Id)).ToList();
             return View();
         }
 
@@ -67,6 +72,15 @@ namespace DrivingSchoolApp.Controllers
             }
 
             await _userManager.AddToRoleAsync(user, model.Role);
+
+            var profile = new UserProfile
+            {
+                IdentityUserId = user.Id,
+                PersonId = model.PersonId
+            };
+
+            _context.UserProfiles.Add(profile);
+            _context.SaveChanges();
 
             TempData["GeneratedPassword"] = password;
             TempData["CreatedUserEmail"] = model.Email;

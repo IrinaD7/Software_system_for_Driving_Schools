@@ -24,6 +24,15 @@
         </select>
     </div>
 
+    <div>
+        <select asp-for="PersonId" class="form-control">
+        @foreach(var p in ViewBag.Persons)
+        {
+            <option value="@p.Id">@p.Surname @p.Name</option>
+        }
+        </select>
+    </div>
+
     <br />
 
     <button type="submit">Создать пользователя</button>

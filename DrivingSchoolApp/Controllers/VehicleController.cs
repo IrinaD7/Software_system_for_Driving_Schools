@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using DrivingSchoolApp.Models;
 using DrivingSchoolApp.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DrivingSchoolApp.Controllers
 {
@@ -15,13 +16,16 @@ namespace DrivingSchoolApp.Controllers
         }
 
         // GET: Vehicle
+        [Authorize(Roles = "Admin, Instructor")]
         public async Task<IActionResult> Index()
         {
             var vehicles = await _context.Vehicles.ToListAsync();
             return View(vehicles);
         }
 
+
         // GET: Vehicle/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -30,6 +34,7 @@ namespace DrivingSchoolApp.Controllers
         // POST: Vehicle/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(Vehicle vehicle)
         {
             if (ModelState.IsValid)
@@ -43,6 +48,7 @@ namespace DrivingSchoolApp.Controllers
         }
 
         // GET: Vehicle/Edit/5
+        [Authorize(Roles = "Admin, Instructor")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -56,6 +62,7 @@ namespace DrivingSchoolApp.Controllers
         // POST: Vehicle/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Instructor")]
         public async Task<IActionResult> Edit(int id, Vehicle vehicle)
         {
             if (id != vehicle.Id) return NotFound();
@@ -80,6 +87,7 @@ namespace DrivingSchoolApp.Controllers
         }
 
         // GET: Vehicle/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -92,6 +100,7 @@ namespace DrivingSchoolApp.Controllers
         }
 
         // POST: Vehicle/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

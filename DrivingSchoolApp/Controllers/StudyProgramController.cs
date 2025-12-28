@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using DrivingSchoolApp.Models;
 using DrivingSchoolApp.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DrivingSchoolApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StudyProgramController : Controller
     {
         private readonly ApplicationDbContext _context;

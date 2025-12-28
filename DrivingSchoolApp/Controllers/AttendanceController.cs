@@ -1,9 +1,11 @@
 ﻿using DrivingSchoolApp.Data;
 using DrivingSchoolApp.Models;
 using DrivingSchoolApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+[Authorize(Roles = "Teacher")]
 public class AttendanceController : Controller
 {
 	private readonly ApplicationDbContext _context;

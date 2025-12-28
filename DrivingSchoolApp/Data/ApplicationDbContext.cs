@@ -25,6 +25,7 @@ namespace DrivingSchoolApp.Data
 		public DbSet<Application> Applications { get; set; }
 		public DbSet<Vehicle> Vehicles { get; set; }
 		public DbSet<UserProfile> UserProfiles { get; set; }
+		public DbSet<Person> Persons { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

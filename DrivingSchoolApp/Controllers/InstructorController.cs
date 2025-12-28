@@ -1,5 +1,6 @@
 ﻿using DrivingSchoolApp.Data;
 using DrivingSchoolApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using System.Linq;
 
 namespace DrivingSchoolApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class InstructorController : Controller
     {
         private readonly ApplicationDbContext _context;

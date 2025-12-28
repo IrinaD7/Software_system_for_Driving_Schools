@@ -10,5 +10,8 @@ namespace DrivingSchoolApp.Models.Admin
 
 		[Required]
 		public string Role { get; set; }
+
+		[Required]
+		public int PersonId {  get; set; }
 	}
 }
