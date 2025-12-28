@@ -19,18 +19,72 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">
+                                Главная
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Администрирование</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown">
+                                    Администрирование
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index">Пользователи</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Application" asp-action="Index">Заявки</a></li>
+                                    <li><a class="dropdown-item" asp-controller="StudyProgram" asp-action="Index">Учебные программы</a></li>
+                                    <li><a class="dropdown-item" asp-controller="StudyGroup" asp-action="Index">Учебные группы</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Vehicle" asp-action="Index">Автомобили</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Teacher" asp-action="Index">Преподаватели</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Instructor" asp-action="Index">Инструкторы</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Student" asp-action="Index">Студенты</a></li>
+                                </ul>
                             </li>
                         }
+
+                        @if (User.IsInRole("Teacher"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown">
+                                    Преподаватель
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="Lesson" asp-action="MySchedule">Моё расписание</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Attendance" asp-action="MyLessons">Посещаемость</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Instructor"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown">
+                                    Инструктор
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="DrivingLesson" asp-action="Index">Практические занятия</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Vehicle" asp-action="Index">Автомобили</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Student"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown">
+                                    Ученик
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="Lesson" asp-action="MySchedule">Моё расписание</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Attendance" asp-action="MyAttendance">Посещаемость</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Exam" asp-action="MyResults">Экзамены</a></li>
+                                </ul>
+                            </li>
+                        }
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -45,7 +99,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - DrivingSchoolApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - DrivingSchoolApp
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
