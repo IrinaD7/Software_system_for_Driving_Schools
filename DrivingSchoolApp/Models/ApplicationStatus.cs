@@ -2,8 +2,8 @@
 {
 	public enum ApplicationStatus
 	{
-		UnderReview,
-		AwaitingPayment,
+		Created,
+		WaitingPayment,
 		Approved,
 		Rejected
 	}

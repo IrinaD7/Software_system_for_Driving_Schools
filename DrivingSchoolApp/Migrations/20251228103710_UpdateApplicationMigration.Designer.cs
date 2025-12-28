@@ -4,6 +4,7 @@ using DrivingSchoolApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrivingSchoolApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251228103710_UpdateApplicationMigration")]
+    partial class UpdateApplicationMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,6 +58,7 @@ namespace DrivingSchoolApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("StudentId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("StudyProgramId")
@@ -685,7 +689,8 @@ namespace DrivingSchoolApp.Migrations
                     b.HasOne("DrivingSchoolApp.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DrivingSchoolApp.Models.StudyProgram", "StudyProgram")
                         .WithMany()

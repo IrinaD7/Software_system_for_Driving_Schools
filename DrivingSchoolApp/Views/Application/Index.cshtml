@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DrivingSchoolApp.Models.Application>
+
+<h2>Заявки</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Создать заявку</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>ФИО</th>
+        <th>Программа</th>
+        <th>Статус</th>
+        <th></th>
+    </tr>
+
+    @foreach (var a in Model)
+    {
+        <tr>
+            <td>@a.Surname @a.Name</td>
+            <td>@a.StudyProgram.Category</td>
+            <td>@a.Status</td>
+            <td>
+                @if (a.Status == ApplicationStatus.WaitingPayment)
+                {
+                    <a asp-action="Approve" asp-route-id="@a.Id">Одобрить</a>
+                    <a asp-action="Reject" asp-route-id="@a.Id">Отклонить</a>
+                }
+                <a asp-action="Delete" asp-route-id="@a.Id">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>
