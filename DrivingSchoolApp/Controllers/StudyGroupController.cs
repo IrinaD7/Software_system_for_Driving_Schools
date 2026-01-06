@@ -43,15 +43,6 @@ namespace DrivingSchoolApp.Controllers
             ViewBag.StudyPrograms = new SelectList(programs, "Id", "Category");
 
             return View(group);
-
-            //if (ModelState.IsValid)
-            //{
-            //    _context.StudyGroups.Add(group);
-            //    _context.SaveChanges();
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //ViewBag.StudyPrograms = _context.StudyPrograms.ToList();
-            //return View(group);
         }
 
 
@@ -103,5 +94,13 @@ namespace DrivingSchoolApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Students(int id)
+        {
+            var group = _context.StudyGroups.Include(g => g.Students).FirstOrDefault(g => g.Id == id);
+
+            if (group == null) return NotFound();
+
+            return View(group);
+        }
     }
 }
