@@ -89,5 +89,16 @@ namespace DrivingSchoolApp.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var drivingLesson = await _context.DrivingLessons.Include(l => l.Student).Include(l => l.Instructor).Include(l => l.Vehicle).FirstOrDefaultAsync(l => l.Id == id);
+
+            if (drivingLesson == null) return NotFound();
+
+            return View(drivingLesson);
+        }
     }
 }

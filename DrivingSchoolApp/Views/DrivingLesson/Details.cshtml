@@ -1,0 +1,38 @@
+﻿@model DrivingSchoolApp.Models.DrivingLesson
+
+<h2>Информация о занятии</h2>
+
+<hr />
+
+<dl class="row">
+	<dt class="col-sm-3">Дата и время</dt>
+	<dd class="col-sm-9">@Model.Date</dd>
+
+	@if(Model.Student != null)
+	{
+		<dt class="col-sm-3">Ученик</dt>
+		<dd class="col-sm-9">@Model.Student.Surname @Model.Student.Name @Model.Student.Patronymic</dd>
+	}
+
+	@if (Model.Instructor != null)
+	{
+		<dt class="col-sm-3">Инструктор</dt>
+		<dd class="col-sm-9">@Model.Instructor.Surname @Model.Instructor.Name @Model.Instructor.Patronymic</dd>
+	}
+
+	@if (Model.Vehicle != null)
+	{
+		<dt class="col-sm-3">Автомобиль</dt>
+		<dd class="col-sm-9">
+			<a asp-controller="Vehicle" asp-action="Details" asp-route-id="@Model.Vehicle.Id">@Model.Vehicle.Model</a>
+		</dd>	
+	}
+
+	<dt class="col-sm-3">Оценка</dt>
+	<dd class="col-sm-9">@Model.Grade</dd>
+
+	<dt class="col-sm-3">Комментарий</dt>
+	<dd class="col-sm-9">@Model.Comment</dd>
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary">Назад</a>
