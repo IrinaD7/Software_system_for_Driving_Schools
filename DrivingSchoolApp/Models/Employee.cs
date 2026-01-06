@@ -12,6 +12,6 @@ namespace DrivingSchoolApp.Models
         public int Experience { get; set; }
 
         [Display(Name = "Квалификация")]
-        public string Qualification {  get; set; }
+        public string Qualification {  get; set; } = string.Empty;
     }
 }

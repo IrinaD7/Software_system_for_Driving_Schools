@@ -2,6 +2,7 @@
 using DrivingSchoolApp.Models;
 using DrivingSchoolApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +10,12 @@ using Microsoft.EntityFrameworkCore;
 public class AttendanceController : Controller
 {
 	private readonly ApplicationDbContext _context;
+    private readonly UserManager<IdentityUser> _userManager;
 
-	public AttendanceController(ApplicationDbContext context)
+    public AttendanceController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
 	{
 		_context = context;
+		_userManager = userManager;
 	}
 
     public IActionResult Mark(int lessonId)

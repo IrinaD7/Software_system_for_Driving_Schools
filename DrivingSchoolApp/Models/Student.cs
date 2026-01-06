@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace DrivingSchoolApp.Models
 {
@@ -9,7 +10,7 @@ namespace DrivingSchoolApp.Models
 
 		[Display(Name = "Учебная группа")]
         public int? GroupId {  get; set; }
-		public StudyGroup? Group { get; set; }
+		public StudyGroup? Group { get; set; }  
 
         public Student()
         {

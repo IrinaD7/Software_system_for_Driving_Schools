@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DrivingSchoolApp.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Teacher")]
     public class LessonController : Controller
     {
         private readonly ApplicationDbContext _context;

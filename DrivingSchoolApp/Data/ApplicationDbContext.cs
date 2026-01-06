@@ -53,6 +53,6 @@ namespace DrivingSchoolApp.Data
 				.WithMany(g => g.Students)
 				.HasForeignKey(s => s.GroupId)
 				.OnDelete(DeleteBehavior.Restrict);
-		}
+        }
 	}
 }

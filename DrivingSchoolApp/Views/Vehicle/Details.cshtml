@@ -1,0 +1,31 @@
+﻿@model DrivingSchoolApp.Models.Vehicle
+
+<h2>Информация о транспортном средстве</h2>
+
+<hr />
+
+<dl class="row">
+	<dt class="col-sm-3">Модель</dt>
+	<dd class="col-sm-9">@Model.Model</dd>
+
+	<dt class="col-sm-3">VIN</dt>
+	<dd class="col-sm-9">@Model.VIN</dd>
+
+	<dt class="col-sm-3">Цвет</dt>
+	<dd class="col-sm-9">@Model.Color</dd>
+
+	<dt class="col-sm-3">Трансмиссия</dt>
+	<dd class="col-sm-9">@Model.Transmission</dd>
+
+	<dt class="col-sm-3">Тип привода</dt>
+	<dd class="col-sm-9">@Model.DriveType</dd>
+
+	<dt class="col-sm-3">Категория</dt>
+	<dd class="col-sm-9">@Model.Category</dd>
+
+	<dt class="col-sm-3">Год выпуска</dt>
+	<dd class="col-sm-9">@Model.ManufactureYear</dd>
+
+	<dt class="col-sm-3">Техническое состояние</dt>
+	<dd class="col-sm-9">@Model.TechnicalCondition</dd>
+</dl>
