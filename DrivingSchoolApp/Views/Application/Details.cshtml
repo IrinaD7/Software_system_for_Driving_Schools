@@ -1,0 +1,25 @@
+﻿@model DrivingSchoolApp.Models.Application
+
+<h2>Информация о заявке</h2>
+
+<hr />
+
+<dl class="row">
+	<dt class="col-sm-3">ФИО</dt>
+	<dd class="col-sm-9">@Model.Surname @Model.Name @Model.Patronymic</dd>
+
+	<dt class="col-sm-3">Дата рождения</dt>
+	<dd class="col-sm-9">@Model.BirthDate</dd>
+
+	<dt class="col-sm-3">Паспорт</dt>
+	<dd class="col-sm-9">@Model.Passport</dd>
+
+	<dt class="col-sm-3">Дата подачи заявки</dt>
+	<dd class="col-sm-9">@Model.Date</dd>
+
+	<dt class="col-sm-3">Срок оплаты</dt>
+	<dd class="col-sm-9">@Model.PaymentDeadline</dd>
+
+	<dt class="col-sm-3">Статус заявки</dt>
+	<dd class="col-sm-9">@Model.Status</dd>
+</dl>

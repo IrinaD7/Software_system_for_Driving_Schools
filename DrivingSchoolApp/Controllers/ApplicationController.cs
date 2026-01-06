@@ -117,4 +117,15 @@ public class ApplicationController : Controller
 
         return RedirectToAction(nameof(Index));
     }
+
+    public async Task<IActionResult> Details(int? id)
+    {
+        if (id == null) return NotFound();
+
+        var application = await _context.Applications.FirstOrDefaultAsync(a => a.Id == id);
+
+        if (application == null) return NotFound();
+
+        return View(application);
+    }
 }
