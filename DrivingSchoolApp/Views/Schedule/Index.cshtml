@@ -1,0 +1,25 @@
+﻿@model IEnumerable<DrivingSchoolApp.Models.Lesson>
+
+<h2>Общее расписание</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Дата и время</th>
+            <th>Преподаватель</th>
+            <th>Группа</th>
+            <th>Аудитория</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lesson in Model)
+        {
+            <tr>
+                <td>@lesson.Date.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@lesson.Teacher?.Surname</td>
+                <td>@lesson.Group?.Name</td>
+                <td>@lesson.Classroom</td>
+            </tr>
+        }
+    </tbody>
+</table>

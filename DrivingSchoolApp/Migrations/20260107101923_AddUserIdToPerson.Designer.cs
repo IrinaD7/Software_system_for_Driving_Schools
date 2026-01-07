@@ -4,6 +4,7 @@ using DrivingSchoolApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrivingSchoolApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260107101923_AddUserIdToPerson")]
+    partial class AddUserIdToPerson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +73,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasIndex("StudyProgramId");
 
-                    b.ToTable("Applications", (string)null);
+                    b.ToTable("Applications");
                 });
 
             modelBuilder.Entity("DrivingSchoolApp.Models.Attendance", b =>
@@ -96,7 +99,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Attendances", (string)null);
+                    b.ToTable("Attendances");
                 });
 
             modelBuilder.Entity("DrivingSchoolApp.Models.DrivingLesson", b =>
@@ -133,7 +136,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("DrivingLessons", (string)null);
+                    b.ToTable("DrivingLessons");
                 });
 
             modelBuilder.Entity("DrivingSchoolApp.Models.Lesson", b =>
@@ -164,7 +167,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Lessons", (string)null);
+                    b.ToTable("Lessons");
                 });
 
             modelBuilder.Entity("DrivingSchoolApp.Models.Person", b =>
@@ -211,7 +214,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Persons", (string)null);
+                    b.ToTable("Persons");
 
                     b.HasDiscriminator().HasValue("Person");
 
@@ -255,7 +258,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("PracticeExams", (string)null);
+                    b.ToTable("PracticeExams");
                 });
 
             modelBuilder.Entity("DrivingSchoolApp.Models.StudyGroup", b =>
@@ -283,7 +286,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasIndex("StudyProgramId");
 
-                    b.ToTable("StudyGroups", (string)null);
+                    b.ToTable("StudyGroups");
                 });
 
             modelBuilder.Entity("DrivingSchoolApp.Models.StudyProgram", b =>
@@ -309,7 +312,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("StudyPrograms", (string)null);
+                    b.ToTable("StudyPrograms");
                 });
 
             modelBuilder.Entity("DrivingSchoolApp.Models.TheoryExam", b =>
@@ -347,7 +350,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("TheoryExams", (string)null);
+                    b.ToTable("TheoryExams");
                 });
 
             modelBuilder.Entity("DrivingSchoolApp.Models.UserProfile", b =>
@@ -371,7 +374,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("UserProfiles", (string)null);
+                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("DrivingSchoolApp.Models.Vehicle", b =>
@@ -411,7 +414,7 @@ namespace DrivingSchoolApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vehicles", (string)null);
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
