@@ -1,6 +1,5 @@
 ﻿using DrivingSchoolApp.Data;
 using DrivingSchoolApp.Models;
-using DrivingSchoolApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

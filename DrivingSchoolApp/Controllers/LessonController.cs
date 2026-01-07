@@ -107,5 +107,57 @@ namespace DrivingSchoolApp.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
-    }
+
+        [Authorize(Roles ="Admin")]
+        public IActionResult CreateAuto()
+        {
+			ViewBag.Teachers = _context.Teachers.ToList();
+			ViewBag.Groups = _context.StudyGroups.Include(g => g.StudyProgram).ToList();
+			return View();
+		}
+
+		[HttpPost]
+		[Authorize(Roles = "Admin")]
+		[ValidateAntiForgeryToken]
+		public IActionResult CreateAuto(int teacherId, int groupId, string classroom, DateTime firstDate)
+		{
+            var group = _context.StudyGroups.Include(g => g.StudyProgram).FirstOrDefault(g => g.Id == groupId);
+
+            if (group == null) return NotFound();
+
+            int lessonCount = group.StudyProgram.TheoryHours;
+
+            DateTime currentDate = firstDate;
+            int created = 0;
+
+            while (created < lessonCount)
+            {
+                if(currentDate.DayOfWeek == DayOfWeek.Saturday || currentDate.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    currentDate = currentDate.AddDays(1);
+                    continue;
+                }
+
+                bool conflict = _context.Lessons.Any(l => l.Date == currentDate && (l.Classroom == classroom || l.TeacherId == teacherId));
+
+                if(!conflict)
+                {
+                    _context.Lessons.Add(new Lesson
+                    {
+                        TeacherId = teacherId,
+                        GroupId = groupId,
+                        Classroom = classroom,
+                        Date = currentDate
+                    });
+
+                    created++;
+				}
+
+                currentDate = currentDate.AddDays(created % 2 == 0 ? 3 : 4);
+            }
+
+			_context.SaveChanges();
+			return RedirectToAction(nameof(Index));
+		}
+	}
 }

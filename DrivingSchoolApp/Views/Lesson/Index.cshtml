@@ -4,6 +4,10 @@
 
 <p>
     <a asp-action="Create" class="btn btn-primary">Добавить занятие</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="CreateAuto" class="btn btn-primary">Автоматически создать занятия</a>
+    }
 </p>
 
 <table class="table table-bordered">

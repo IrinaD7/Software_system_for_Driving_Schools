@@ -1,0 +1,41 @@
+﻿@model DrivingSchoolApp.Models.Lesson
+
+<h2>Автоматическое создание занятий</h2>
+
+<form asp-action="CreateAuto" method="post">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label>Преподаватель</label>
+        <select asp-for="TeacherId" class="form-control">
+            <option value="">Выберите преподавателя</option>
+            @foreach (var t in ViewBag.Teachers)
+            {
+                <option value="@t.Id">@t.Surname</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Учебная группа</label>
+        <select asp-for="GroupId" class="form-control">
+            <option value="">Выберите группу</option>
+            @foreach (var g in ViewBag.Groups)
+            {
+                <option value="@g.Id">@g.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Classroom">Аудитория</label>
+        <input asp-for="Classroom" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Date">Дата первого занятия</label>
+        <input name="firstDate" type="datetime-local" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>
