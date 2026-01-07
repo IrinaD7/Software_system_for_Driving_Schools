@@ -41,6 +41,8 @@
                                     <li><a class="dropdown-item" asp-controller="Teacher" asp-action="Index">Преподаватели</a></li>
                                     <li><a class="dropdown-item" asp-controller="Instructor" asp-action="Index">Инструкторы</a></li>
                                     <li><a class="dropdown-item" asp-controller="Student" asp-action="Index">Студенты</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Lesson" asp-action="Index">Занятия</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Schedule" asp-action="Index">Расписание</a></li>
                                 </ul>
                             </li>
                         }
@@ -52,8 +54,8 @@
                                     Преподаватель
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" asp-controller="Lesson" asp-action="MySchedule">Моё расписание</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Attendance" asp-action="MyLessons">Посещаемость</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Lesson" asp-action="Index">Занятия</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Schedule" asp-action="Index">Расписание</a></li>
                                 </ul>
                             </li>
                         }
@@ -78,9 +80,7 @@
                                     Ученик
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" asp-controller="Lesson" asp-action="MySchedule">Моё расписание</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Attendance" asp-action="MyAttendance">Посещаемость</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Exam" asp-action="MyResults">Экзамены</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Schedule" asp-action="Index">Расписание</a></li>
                                 </ul>
                             </li>
                         }
