@@ -100,5 +100,17 @@ namespace DrivingSchoolApp.Controllers
 
             return View(drivingLesson);
         }
+
+        public IActionResult GradesReport()
+        {
+            var data = _context.DrivingLessons.Where(l => l.Grade.HasValue).Include(l => l.Student).AsEnumerable().GroupBy(l => l.Student).Select(g => new StudentGradesViewModel
+            {
+                StudentName = $"{g.Key.Surname} {g.Key.Name}",
+                Grades = g.Select(x => x.Grade.Value).ToList(),
+                AverageGrade = g.Average(x => x.Grade.Value)
+            }).ToList();
+
+            return View(data);
+        }
     }
 }

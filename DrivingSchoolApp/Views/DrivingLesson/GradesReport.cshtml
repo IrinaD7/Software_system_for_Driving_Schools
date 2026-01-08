@@ -1,0 +1,23 @@
+﻿@model IEnumerable<DrivingSchoolApp.Models.StudentGradesViewModel>
+
+<h2>Оценки учеников</h2>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Ученик</th>
+			<th>Оценки</th>
+			<th>Средний балл</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var item in Model)
+		{
+			<tr>
+				<td>@item.StudentName</td>
+				<td>@string.Join(", ", item.Grades)</td>
+				<td>@item.AverageGrade.ToString("0.00")</td>
+			</tr>
+		}
+	</tbody>
+</table>

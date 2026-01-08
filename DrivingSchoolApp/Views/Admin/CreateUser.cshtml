@@ -7,14 +7,14 @@
 <h2>Создать пользователя</h2>
 
 <form asp-action="CreateUser" method="post">
-
-    <div>
-        <label>Email</label><br />
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label asp-for="Email">Email</label><br />
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
-    <div>
+    <div class="form-group">
         <label>Роль</label><br />
         <select asp-for="Role">
             <option value="Admin">Администратор</option>
@@ -35,5 +35,5 @@
 
     <br />
 
-    <button type="submit">Создать пользователя</button>
+    <button type="submit" class="btn btn-success">Создать пользователя</button>
 </form>

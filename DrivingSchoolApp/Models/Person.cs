@@ -28,6 +28,5 @@ namespace DrivingSchoolApp.Models
         [Required(ErrorMessage = "Введите паспортные данные")]
         [Display(Name = "Пасспортные данные")]
         public string Passport { get; set; } = string.Empty;
-
     }
 }
