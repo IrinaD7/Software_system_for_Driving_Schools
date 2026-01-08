@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-[Authorize(Roles = "Teacher")]
+[Authorize(Roles = "Teacher, Admin")]
 public class AttendanceController : Controller
 {
 	private readonly ApplicationDbContext _context;
@@ -79,4 +79,36 @@ public class AttendanceController : Controller
 		_context.SaveChanges();
 		return RedirectToAction("Index", "Lesson");
 	}
+
+    public IActionResult AttendanceReport()
+    {
+        ViewBag.Groups = _context.StudyGroups.ToList();
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult AttendanceReport(int groupId)
+    {
+        var group = _context.StudyGroups.Include(g => g.Students).FirstOrDefault(g => g.Id == groupId);
+
+        if(group == null) return NotFound();
+
+        var report = new AttendanceReportViewModel
+        {
+            GroupId = group.Id,
+            GroupName = group.Name,
+        };
+
+        foreach(var student in group.Students)
+        {
+            int missed = _context.Attendances.Include(a => a.Lesson).Count(a => a.StudentId == student.Id && a.IsPresent == false && a.Lesson.GroupId == group.Id);
+
+            report.Students.Add(new StudentAttendanceSummary
+            {
+                StudentName = $"{student.Surname} {student.Name}",
+                MissedCount = missed
+            });
+        }
+        return View("AttendanceReportResult", report);
+    }
 }

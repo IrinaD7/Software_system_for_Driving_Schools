@@ -1,0 +1,15 @@
+﻿<h2>Общая посещаемость</h2>
+
+<form method="post">
+	<label>Выберите группу</label>
+	<select name="groupId" class="form-control">
+		@foreach (var g in ViewBag.Groups)
+		{
+			<option value="@g.Id">@g.Name</option>
+		}
+	</select>
+
+	<br />
+
+	<button tupe="submit" class="btn btn-primary">Показать</button>
+</form>

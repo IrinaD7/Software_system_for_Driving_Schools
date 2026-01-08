@@ -1,0 +1,21 @@
+﻿@model DrivingSchoolApp.Models.AttendanceReportViewModel
+
+<h2>Посещаемость группы @Model.GroupName</h2>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Ученик</th>
+			<th>Пропущено занятий</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var s in Model.Students)
+		{
+			<tr>
+				<td>@s.StudentName</td>
+				<td>@s.MissedCount</td>
+			</tr>
+		}
+	</tbody>
+</table>
