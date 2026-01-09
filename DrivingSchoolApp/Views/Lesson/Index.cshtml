@@ -6,7 +6,7 @@
     @if (User.IsInRole("Admin"))
     {
         <a asp-action="Create" class="btn btn-primary">Добавить занятие</a>
-        <a asp-action="CreateAuto" class="btn btn-primary">Автоматически создать занятия</a>
+        <a asp-action="CreateAuto" class="btn btn-success">Автоматически создать занятия</a>
         <a asp-controller="Attendance" asp-action="AttendanceReport" class="btn btn-secondary">Общая посещаемость</a>
     }
 </p>
@@ -32,8 +32,8 @@
                 <td>
                     @if (User.IsInRole("Admin"))
                     {
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Редактировать</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Удалить</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Редактировать</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Удалить</a>
                     }
                     <a asp-controller="Attendance"
                        asp-action="Mark"

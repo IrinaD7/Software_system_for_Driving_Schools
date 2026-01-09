@@ -41,7 +41,7 @@
         <span asp-validation-for="Passport" class="text-danger"></span>
     </div>
 
-    <h4>Данные сотрудника</h4>
+    <h4 class="mt-3">Данные сотрудника</h4>
 
     <div class="form-group">
         <label asp-for="DriverLicense"></label>
@@ -59,8 +59,8 @@
         <input asp-for="Specialization" class="form-control" />
     </div>
 
-    <button type="submit" class="btn btn-success">Сохранить</button>
-    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+    <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Отмена</a>
 </form>
 
 @section Scripts {

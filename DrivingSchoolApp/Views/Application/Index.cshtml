@@ -22,11 +22,11 @@
             <td>
                 @if (a.Status == ApplicationStatus.WaitingPayment)
                 {
-                    <a asp-action="Approve" asp-route-id="@a.Id">Одобрить</a>
-                    <a asp-action="Reject" asp-route-id="@a.Id">Отклонить</a>
+                    <a asp-action="Approve" asp-route-id="@a.Id" class="btn btn-success">Одобрить</a>
+                    <a asp-action="Reject" asp-route-id="@a.Id" class="btn btn-danger">Отклонить</a>
                 }
-                <a asp-action="Details" asp-route-id="@a.Id">Подробнее</a> |
-                <a asp-action="Delete" asp-route-id="@a.Id">Удалить</a>
+                <a asp-action="Details" asp-route-id="@a.Id" class="btn btn-light">Подробнее</a> 
+                <a asp-action="Delete" asp-route-id="@a.Id" class="btn btn-outline-danger">Удалить</a>
             </td>
         </tr>
     }

@@ -16,7 +16,7 @@
 
     <div class="form-group">
         <label>Роль</label><br />
-        <select asp-for="Role">
+        <select asp-for="Role" class="form-select form-select-lg mb-3">
             <option value="Admin">Администратор</option>
             <option value="Instructor">Инструктор</option>
             <option value="Teacher">Преподаватель</option>
@@ -25,7 +25,7 @@
     </div>
 
     <div>
-        <select asp-for="PersonId" class="form-control">
+        <select asp-for="PersonId" class="form-select">
         @foreach(var p in ViewBag.Persons)
         {
             <option value="@p.Id">@p.Surname @p.Name</option>
@@ -35,5 +35,5 @@
 
     <br />
 
-    <button type="submit" class="btn btn-success">Создать пользователя</button>
+    <button type="submit" class="btn btn-primary">Создать пользователя</button>
 </form>

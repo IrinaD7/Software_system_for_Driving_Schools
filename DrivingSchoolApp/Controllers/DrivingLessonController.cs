@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DrivingSchoolApp.Controllers
 {
-    [Authorize(Roles = "Instructor")]
     public class DrivingLessonController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -17,6 +16,7 @@ namespace DrivingSchoolApp.Controllers
         }
 
         // GET: DrivingLessons
+        [Authorize(Roles = "Instructor, Student")]
         public IActionResult Index()
         {
             var lessons = _context.DrivingLessons
@@ -29,6 +29,7 @@ namespace DrivingSchoolApp.Controllers
         }
 
         // GET: DrivingLessons/Create
+        [Authorize(Roles = "Instructor")]
         public IActionResult Create()
         {
             ViewBag.Students = _context.Students.ToList();
@@ -40,6 +41,7 @@ namespace DrivingSchoolApp.Controllers
 
         // POST: DrivingLessons/Create
         [HttpPost]
+        [Authorize(Roles = "Instructor")]
         public IActionResult Create(DrivingLesson lesson)
         {
             _context.DrivingLessons.Add(lesson);
@@ -48,6 +50,7 @@ namespace DrivingSchoolApp.Controllers
         }
 
         // GET: DrivingLessons/Edit/5
+        [Authorize(Roles = "Instructor")]
         public IActionResult Edit(int id)
         {
             var lesson = _context.DrivingLessons.Find(id);
@@ -61,6 +64,7 @@ namespace DrivingSchoolApp.Controllers
 
         // POST: DrivingLessons/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Instructor")]
         public IActionResult Edit(DrivingLesson lesson)
         {
             _context.DrivingLessons.Update(lesson);
@@ -69,6 +73,7 @@ namespace DrivingSchoolApp.Controllers
         }
 
         // GET: DrivingLessons/Delete/5
+        [Authorize(Roles = "Instructor")]
         public IActionResult Delete(int id)
         {
             var lesson = _context.DrivingLessons
@@ -81,6 +86,7 @@ namespace DrivingSchoolApp.Controllers
         }
 
         // POST: DrivingLessons/Delete/5
+        [Authorize(Roles = "Instructor")]
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
@@ -90,6 +96,7 @@ namespace DrivingSchoolApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Instructor, Student")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
