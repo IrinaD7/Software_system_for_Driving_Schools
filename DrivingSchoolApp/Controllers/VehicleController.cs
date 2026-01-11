@@ -15,7 +15,6 @@ namespace DrivingSchoolApp.Controllers
             _context = context;
         }
 
-        // GET: Vehicle
         [Authorize(Roles = "Admin, Instructor")]
         public async Task<IActionResult> Index()
         {
@@ -23,15 +22,12 @@ namespace DrivingSchoolApp.Controllers
             return View(vehicles);
         }
 
-
-        // GET: Vehicle/Create
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Vehicle/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
@@ -47,7 +43,6 @@ namespace DrivingSchoolApp.Controllers
 
         }
 
-        // GET: Vehicle/Edit/5
         [Authorize(Roles = "Admin, Instructor")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -59,7 +54,6 @@ namespace DrivingSchoolApp.Controllers
             return View(vehicle);
         }
 
-        // POST: Vehicle/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Instructor")]
@@ -86,7 +80,6 @@ namespace DrivingSchoolApp.Controllers
             return View(vehicle);
         }
 
-        // GET: Vehicle/Delete/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -99,7 +92,6 @@ namespace DrivingSchoolApp.Controllers
             return View(vehicle);
         }
 
-        // POST: Vehicle/Delete/5
         [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

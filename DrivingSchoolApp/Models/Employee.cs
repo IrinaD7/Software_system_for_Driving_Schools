@@ -10,8 +10,5 @@ namespace DrivingSchoolApp.Models
         [Range(0, 60, ErrorMessage ="Опыт работы должен быть от 0 до 60 лет")]
         [Display(Name = "Опыт работы (лет)")]
         public int Experience { get; set; }
-
-        [Display(Name = "Квалификация")]
-        public string Qualification {  get; set; } = string.Empty;
     }
 }

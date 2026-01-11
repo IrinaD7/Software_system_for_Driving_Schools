@@ -7,8 +7,12 @@
     {
         <a asp-action="Create" class="btn btn-primary">Добавить занятие</a>
         <a asp-action="CreateAuto" class="btn btn-success">Автоматически создать занятия</a>
+    }
+    @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+    {
         <a asp-controller="Attendance" asp-action="AttendanceReport" class="btn btn-secondary">Общая посещаемость</a>
     }
+    
 </p>
 
 <table class="table table-bordered">

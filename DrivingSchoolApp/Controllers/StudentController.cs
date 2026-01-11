@@ -16,21 +16,18 @@ namespace DrivingSchoolApp.Controllers
 			_context = context;
 		}
 
-		// GET: Student
 		public IActionResult Index()
 		{
 			var students = _context.Students.Include(s => s.Group).ToList();
 			return View(students);
 		}
 
-		// GET: Student/Create
 		public IActionResult Create()
 		{
 			ViewBag.Groups = _context.StudyGroups.ToList();
 			return View();
 		}
 
-		// POST: Student/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Create(Student student)
@@ -45,7 +42,6 @@ namespace DrivingSchoolApp.Controllers
 			return View(student);
 		}
 
-		// GET: Student/Edit/5
 		public IActionResult Edit(int id)
 		{
 			var student = _context.Students.Find(id);
@@ -68,7 +64,6 @@ namespace DrivingSchoolApp.Controllers
 			return View(student);
 		}
 
-		// GET: Student/Delete/5
 		public IActionResult Delete(int id)
 		{
             var student = _context.Students.Include(s => s.Group).FirstOrDefault(s => s.Id == id);
